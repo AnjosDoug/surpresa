@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surpresa de Aniversário</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        .message {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .message h1 {
+            font-size: 2.5em;
+            color: #ff4500;
+            margin-bottom: 0.5em;
+            animation: rainbowText 3s infinite; /* Adiciona efeito piscante ao texto */
+        }
+
+        .message p {
+            font-size: 1.2em;
+            color: #2e8b57;
+            margin-bottom: 1em;
+        }
+
+        .video-container {
+            margin-top: 1em;
+            animation: slideIn 2s ease-in-out;
+            display: none; /* Inicialmente, oculta o vídeo */
+            position: relative; /* Adiciona posição relativa para os corações */
+        }
+
+        .video-container video {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .button {
+            background-color: #ff4500;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #d63031;
+        }
+
+        .heart {
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 30px;
+            animation: float 5s ease-in-out infinite;
+            opacity: 0;
+        }
+
+        @keyframes float {
+            0% { opacity: 0; bottom: -20px; }
+            10% { opacity: 1; bottom: 0; }
+            90% { opacity: 1; bottom: 0; }
+            100% { opacity: 0; bottom: -20px; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes rainbowText {
+            0% {
+                color: #ff0000; /* Vermelho */
+            }
+            16% {
+                color: #ff7f00; /* Laranja */
+            }
+            33% {
+                color: #ffff00; /* Amarelo */
+            }
+            50% {
+                color: #00ff00; /* Verde */
+            }
+            66% {
+                color: #0000ff; /* Azul */
+            }
+            83% {
+                color: #4b0082; /* Índigo */
+            }
+            100% {
+                color: #9400d3; /* Violeta */
+            }
+        }
+
+        @media (max-width: 600px) {
+            .message h1 {
+                font-size: 2em;
+            }
+
+            .message p {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="message">
+        <h1>Feliz Aniversário!</h1>
+        <p>Espero que seu dia seja tão especial quanto você!</p>
+        <p>Você é linda, maravilhosa, perfeita, meu sonho realizado!</p>
+        <button class="button" onclick="mostrarVideo()">Veja a garota que me encantou desde o primeiro momento</button>
+    </div>
+    <div class="video-container" id="video">
+        <video controls autoplay muted>
+            <source src="linda.mp4" type="video/mp4">
+            Seu navegador não suporta o elemento de vídeo.
+        </video>
+    </div>
+
+    <script>
+        function mostrarVideo() {
+            var videoDiv = document.getElementById("video");
+            videoDiv.style.display = "block"; // Exibe o vídeo ao clicar no botão
+
+            // Criando emojis de coração flutuantes
+            for (var i = 0; i < 5; i++) {
+                var heart = document.createElement("div");
+                heart.innerHTML = "❤️";
+                heart.classList.add("heart");
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.animationDelay = Math.random() * 3 + "s";
+                document.body.appendChild(heart);
+            }
+        }
+    </script>
+</body>
+</html>
